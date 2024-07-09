@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maze</title>
+    <style>
+      body {
+        position: fixed;
+        inset: 0;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        font-family: Helvetica, sans-serif;
+      }
+      a {
+        color: #888;
+        font-size: 12px;
+        text-decoration: none;
+        width: calc(100vw - min(25vw, 25vh));
+        text-align: center;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      #app {
+        width: calc(100vw - min(25vw, 25vh));
+        height: calc(100vh - min(25vw, 25vh));
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <a
+      href="https://en.wikipedia.org/wiki/Maze_generation_algorithm#Iterative_randomized_Prim.27s_algorithm_.28without_stack.2C_without_sets.29"
+    >
+      The maze was generated as a minimum spanning tree using Prim’s algorithm
+      on a grid graph with random edge weights
+    </a>
+    <script type="module" src="./src/index.ts"></script>
+  </body>
+</html>
