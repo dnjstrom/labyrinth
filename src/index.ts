@@ -6,7 +6,7 @@ import { makeSvgElement } from "./makeSvgElement.js"
 import { searchAlternating } from "./searchAlternating.js"
 import invariant from "tiny-invariant"
 
-let shouldAnimate = true
+let shouldAnimate = false
 
 const app = document.getElementById("app")
 
@@ -32,10 +32,8 @@ const observer = new ResizeObserver(async () => {
       height: HEIGHT,
     }
 
-    let maze
-
     if (shouldAnimate) {
-      for (maze of generateLabyrint(WIDTH - 2, HEIGHT - 2)) {
+      for (const maze of generateLabyrint(WIDTH, HEIGHT)) {
         if (currentMazeIndex !== activeMazeIndex) {
           return // Cancel drawing if a new animation has started
         }
@@ -44,51 +42,9 @@ const observer = new ResizeObserver(async () => {
         await delay(0)
       }
     } else {
-      maze = lastOf(generateLabyrint(WIDTH - 2, HEIGHT - 2))
+      const maze = lastOf(generateLabyrint(WIDTH, HEIGHT))
       app.replaceChildren(mazeToSvg(maze, mazeOptions))
     }
-
-    invariant(maze, "Unable to generate maze")
-
-    const topRow = maze.map((column) => column[0])
-
-    const topEntrypoint = searchAlternating(
-      topRow,
-      Math.floor(WIDTH / 3),
-      (cell) => cell.type === "PATH",
-    )
-
-    invariant(topEntrypoint, "Unable to find top entry point")
-
-    app.querySelector("svg")?.appendChild(
-      makeSvgElement("rect", {
-        width: cellSize,
-        height: cellSize,
-        fill: "#fff",
-        x: (topEntrypoint.x + 1) * cellSize,
-        y: 0,
-      }),
-    )
-
-    const bottomRow = maze.map((column) => column[column.length - 1])
-
-    const bottomEntrypoint = searchAlternating(
-      bottomRow,
-      Math.floor((2 * WIDTH) / 3),
-      (cell) => cell.type === "PATH",
-    )
-
-    invariant(bottomEntrypoint, "Unable to find top entry point")
-
-    app.querySelector("svg")?.appendChild(
-      makeSvgElement("rect", {
-        width: cellSize,
-        height: cellSize,
-        fill: "#fff",
-        x: (bottomEntrypoint.x + 1) * cellSize,
-        y: (HEIGHT - 1) * cellSize,
-      }),
-    )
   } finally {
     shouldAnimate = false // Stop animating after the first load
   }

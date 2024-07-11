@@ -32,8 +32,8 @@ export const mazeToSvg = (
         "fill",
         cell.selected ? "#f00" : cell.type === "WALL" ? "#000" : "#fff",
       )
-      rect.setAttributeNS(null, "x", `${(x + 1) * cellSize}`)
-      rect.setAttributeNS(null, "y", `${(y + 1) * cellSize}`)
+      rect.setAttributeNS(null, "x", `${x * cellSize}`)
+      rect.setAttributeNS(null, "y", `${y * cellSize}`)
       svg.appendChild(rect)
     }
   }
