@@ -2,6 +2,7 @@ import Heap from "heap"
 import { getRandomInt } from "./getRandomInt.js"
 import { searchAlternating } from "./searchAlternating.js"
 import invariant from "tiny-invariant"
+import { rowAt } from "./rowAt.js"
 
 export type Cell = {
   x: number
@@ -96,12 +97,23 @@ export function* generateLabyrint(width: number, height: number) {
     )
   }
 
+  const getInitialCell = (maze: Maze): Cell | undefined => {
+    for (let i = 0; i < 100; i += 1) {
+      const x = getRandomInt(0, maze.length)
+      const y = getRandomInt(0, maze[0].length)
+      const cell = maze[x][y]
+
+      if (isValidPathCell(cell)) {
+        return cell
+      }
+    }
+  }
+
   // The heap and weight is used to randomly select the next cell to explore
   const heap = new Heap<Cell>((a, b) => b.weight - a.weight)
 
   for (
-    let cell: Cell | undefined =
-      maze[getRandomInt(0, width)][getRandomInt(0, height)];
+    let cell: Cell | undefined = getInitialCell(maze);
     cell !== undefined;
     cell = heap.pop()
   ) {
@@ -123,7 +135,7 @@ export function* generateLabyrint(width: number, height: number) {
     cell.selected = false
   }
 
-  const topRow = maze.map((column) => column[2])
+  const topRow = rowAt(maze, 2)
 
   const topEntrypoint = searchAlternating(
     topRow,
@@ -136,7 +148,7 @@ export function* generateLabyrint(width: number, height: number) {
     maze[topEntrypoint.x][1].type = "PATH"
   }
 
-  const bottomRow = maze.map((column) => column[column.length - 3])
+  const bottomRow = rowAt(maze, height - 3)
 
   const bottomEntrypoint = searchAlternating(
     bottomRow,

@@ -30,9 +30,11 @@
       #app {
         width: calc(100vw - min(25vw, 25vh));
         height: calc(100vh - min(25vw, 25vh));
-        display: flex;
-        justify-content: center;
-        align-items: center;
+      }
+      #app > * {
+        position: absolute;
+        width: 100%;
+        height: 100%;
       }
     </style>
   </head>

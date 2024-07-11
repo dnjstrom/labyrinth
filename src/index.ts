@@ -1,7 +1,7 @@
 import { delay } from "./delay.js"
 import { generateLabyrint } from "./generateMaze.js"
-import { mazeToSvg } from "./mazeToSvg.js"
 import { lastOf } from "./lastOf.js"
+import { mazeToSvgPath } from "./mazeToSvgPath.js"
 
 // @ts-expect-error https://vitejs.dev/guide/env-and-mode
 let shouldAnimate = import.meta.env.MODE !== "development"
@@ -36,12 +36,14 @@ const observer = new ResizeObserver(async () => {
           return // Cancel drawing if a new animation has started
         }
 
-        app.replaceChildren(mazeToSvg(maze, mazeOptions))
+        const svg = mazeToSvgPath(maze, mazeOptions)
+        app.replaceChildren(svg)
         await delay(0)
       }
     } else {
       const maze = lastOf(generateLabyrint(WIDTH, HEIGHT))
-      app.replaceChildren(mazeToSvg(maze, mazeOptions))
+      const svg = mazeToSvgPath(maze, mazeOptions)
+      app.replaceChildren(svg)
     }
   } finally {
     shouldAnimate = false // Stop animating after the first load
