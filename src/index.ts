@@ -3,7 +3,8 @@ import { generateLabyrint } from "./generateMaze.js"
 import { mazeToSvg } from "./mazeToSvg.js"
 import { lastOf } from "./lastOf.js"
 
-let shouldAnimate = true
+// @ts-expect-error https://vitejs.dev/guide/env-and-mode
+let shouldAnimate = import.meta.env.MODE !== "development"
 
 const app = document.getElementById("app")
 
