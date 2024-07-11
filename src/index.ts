@@ -2,11 +2,8 @@ import { delay } from "./delay.js"
 import { generateLabyrint } from "./generateMaze.js"
 import { mazeToSvg } from "./mazeToSvg.js"
 import { lastOf } from "./lastOf.js"
-import { makeSvgElement } from "./makeSvgElement.js"
-import { searchAlternating } from "./searchAlternating.js"
-import invariant from "tiny-invariant"
 
-let shouldAnimate = false
+let shouldAnimate = true
 
 const app = document.getElementById("app")
 
