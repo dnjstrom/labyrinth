@@ -3,6 +3,7 @@ import { Cell, Maze } from "./generateMaze.js"
 import { getNeighours } from "./getNeighours.js"
 import { gridIterator } from "./gridIterator.js"
 import { makeSvgElement } from "./makeSvgElement.js"
+import { SVG_NAMESPACE } from "./SVG_NAMESPACE.js"
 
 export const mazeToSvgPath = (
   maze: Maze,
@@ -17,6 +18,8 @@ export const mazeToSvgPath = (
   const svg = makeSvgElement("svg", {
     width: WIDTH * cellSize,
     height: HEIGHT * cellSize,
+    version: "1.1",
+    xmlns: SVG_NAMESPACE,
   })
 
   const defs = makeSvgElement("defs", {})

@@ -1,13 +1,13 @@
-const ns = "http://www.w3.org/2000/svg"
+import { SVG_NAMESPACE } from "./SVG_NAMESPACE.js"
 
 export const makeSvgElement = <T extends keyof SVGElementTagNameMap>(
   elementType: T,
   attributes: Record<string, unknown>,
 ) => {
-  const element = document.createElementNS(ns, elementType)
+  const element = document.createElementNS(SVG_NAMESPACE, elementType)
 
   for (const [key, value] of Object.entries(attributes)) {
-    element.setAttributeNS(null, key, `${value}`)
+    element.setAttribute(key, `${value}`)
   }
 
   return element

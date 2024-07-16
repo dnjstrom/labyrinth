@@ -17,6 +17,7 @@
         gap: 2rem;
         font-family: Helvetica, sans-serif;
       }
+
       a {
         color: #666;
         font-size: 12px;
@@ -24,22 +25,92 @@
         width: calc(100vw - min(25vw, 25vh));
         text-align: center;
       }
+
       a:hover {
         text-decoration: underline;
       }
+
       #app {
         width: calc(100vw - min(25vw, 25vh));
         height: calc(100vh - min(25vw, 25vh));
       }
+
       #app > * {
         position: absolute;
         width: 100%;
         height: 100%;
       }
+
+      .menu-container {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 1000;
+        outline: none;
+      }
+
+      #hamburger {
+        opacity: .3;
+        padding: 0 1rem;
+      }
+
+      .menu-container:hover #hamburger, .menu-container:focus #hamburger {
+        cursor: pointer;
+        opacity: 1;
+      }
+
+      .dropdown {
+        display: none;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+        transform: translateY(100%);
+        padding: .5rem 0;
+      }
+
+      .dropdown button {
+        appearance: none;
+        border: none;
+        background: none;
+        display: block;
+        padding: .5rem 1rem;
+        white-space: nowrap;
+      }
+
+      .dropdown button:hover {
+        background: #eee;
+        cursor: pointer;
+      }
+
+      .menu-container:hover .dropdown ,
+      .menu-container:focus .dropdown {
+        display: block;
+      }
     </style>
   </head>
   <body>
+    <div class="menu-container" tabindex="0">
+      <svg id="hamburger" width="8px" height="32px">
+        <defs>
+          <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:mediumseagreen" />
+            <stop offset="100%" style="stop-color:teal" />
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grad1)" />
+        <rect y="28%" width="100%" height="10%" fill="white" />
+        <rect y="61%" width="100%" height="10%" fill="white" />
+      </svg>
+
+      <div class="dropdown">
+        <button onclick="downloadAsSvg()">Download SVG</button>
+      </div>
+    </div>
+
     <div id="app"></div>
+
     <a
       href="https://en.wikipedia.org/wiki/Maze_generation_algorithm#Iterative_randomized_Prim.27s_algorithm_.28without_stack.2C_without_sets.29"
     >

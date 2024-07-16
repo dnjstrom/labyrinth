@@ -1,7 +1,9 @@
+import invariant from "tiny-invariant"
 import { delay } from "./delay.js"
 import { generateLabyrint } from "./generateMaze.js"
 import { lastOf } from "./lastOf.js"
 import { mazeToSvgPath } from "./mazeToSvgPath.js"
+import { downloadAsSvg } from "./downloadAsSvg.js"
 
 // @ts-expect-error https://vitejs.dev/guide/env-and-mode
 let shouldAnimate = import.meta.env.MODE !== "development"
@@ -51,3 +53,12 @@ const observer = new ResizeObserver(async () => {
 })
 
 observer.observe(app)
+
+// @ts-expect-error
+window.downloadAsSvg = () => {
+  const svg = app.querySelector("svg")
+
+  invariant(svg, "Unable to find SVG element")
+
+  downloadAsSvg(svg)
+}
