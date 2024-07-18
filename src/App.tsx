@@ -1,5 +1,5 @@
-import { Maze } from "./Maze.js"
-import { Menu } from "./Menu.js"
+import { Maze } from "./Maze/index.js"
+import { Menu } from "./Menu/index.js"
 
 export const App = () => (
   <div className="h-screen w-screen p-10 sm:p-20 gap-10 items-center flex flex-col">

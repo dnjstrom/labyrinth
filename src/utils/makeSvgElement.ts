@@ -1,4 +1,4 @@
-import { SVG_NAMESPACE } from "./SVG_NAMESPACE.js"
+import { SVG_NAMESPACE } from "../constants.js"
 
 export const makeSvgElement = <T extends keyof SVGElementTagNameMap>(
   elementType: T,

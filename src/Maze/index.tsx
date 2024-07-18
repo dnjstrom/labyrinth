@@ -1,6 +1,6 @@
-import { delay } from "./delay.js"
+import { delay } from "../utils/delay.js"
 import { generateLabyrint } from "./generateMaze.js"
-import { lastOf } from "./lastOf.js"
+import { lastOf } from "../utils/lastOf.js"
 import { mazeToSvgPath } from "./mazeToSvgPath.js"
 import { useEffect, useRef } from "react"
 

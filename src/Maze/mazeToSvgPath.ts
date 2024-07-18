@@ -1,9 +1,9 @@
-import { findIn } from "./findIn.js"
+import { findIn } from "../utils/findIn.js"
 import { Cell, Maze } from "./generateMaze.js"
 import { getNeighours } from "./getNeighours.js"
-import { gridIterator } from "./gridIterator.js"
-import { makeSvgElement } from "./makeSvgElement.js"
-import { SVG_NAMESPACE } from "./SVG_NAMESPACE.js"
+import { gridIterator } from "../utils/gridIterator.js"
+import { makeSvgElement } from "../utils/makeSvgElement.js"
+import { SVG_NAMESPACE } from "../constants.js"
 
 export const mazeToSvgPath = (
   maze: Maze,

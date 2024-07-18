@@ -1,8 +1,7 @@
 import Heap from "heap"
-import { getRandomInt } from "./getRandomInt.js"
-import { searchAlternating } from "./searchAlternating.js"
-import invariant from "tiny-invariant"
-import { rowAt } from "./rowAt.js"
+import { getRandomInt } from "../utils/getRandomInt.js"
+import { searchAlternating } from "../utils/searchAlternating.js"
+import { rowAt } from "../utils/rowAt.js"
 
 export type Cell = {
   x: number
