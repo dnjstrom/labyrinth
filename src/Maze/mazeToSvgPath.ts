@@ -16,8 +16,11 @@ export const mazeToSvgPath = (
   const { cellSize, width: WIDTH, height: HEIGHT } = options
 
   const svg = makeSvgElement("svg", {
-    width: WIDTH * cellSize,
-    height: HEIGHT * cellSize,
+    // width: WIDTH * cellSize,
+    // height: HEIGHT * cellSize,
+    width: "100%",
+    height: "100%",
+    viewBox: `0 0 ${WIDTH * cellSize} ${HEIGHT * cellSize}`,
     version: "1.1",
     xmlns: SVG_NAMESPACE,
   })

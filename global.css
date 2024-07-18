@@ -2,8 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+a {
+  color: dodgerblue;
+}
+
 a:hover {
   text-decoration: underline;
   cursor: pointer;
   text-underline-offset: 0.2em;
+}
+
+.btn {
+  @apply font-bold py-2 px-4 rounded;
+}
+.btn-blue {
+  @apply bg-blue-500 text-white;
+}
+.btn-blue:hover {
+  @apply bg-blue-700;
+}
+
+.btn-grey {
+  @apply bg-gray-300 text-gray-800;
+}
+.btn-grey:hover {
+  @apply bg-gray-400;
 }
