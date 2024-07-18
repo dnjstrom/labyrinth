@@ -18,7 +18,7 @@ export const Maze = () => {
 
         const currentMazeIndex = (activeMazeIndex += 1)
 
-        const cellSize = 20
+        const cellSize = 16
         const WIDTH = Math.floor(container.clientWidth / cellSize)
         const HEIGHT = Math.floor(container.clientHeight / cellSize)
 
