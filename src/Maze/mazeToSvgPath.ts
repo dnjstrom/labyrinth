@@ -111,5 +111,25 @@ export const mazeToSvgPath = (
     }),
   )
 
+  const selected = [...gridIterator(maze)].find((cell) => cell.selected)
+
+  if (selected) {
+    const instruction = `M ${selected.x * cellSize + cellSize / 2} ${
+      selected.y * cellSize + cellSize / 2
+    } L ${selected.x * cellSize + cellSize / 2} ${
+      selected.y * cellSize + cellSize / 2
+    }`
+
+    svg.appendChild(
+      makeSvgElement("path", {
+        d: instruction,
+        stroke: "crimson",
+        "stroke-width": cellSize,
+        fill: "transparent",
+        "stroke-linecap": "square",
+      }),
+    )
+  }
+
   return svg
 }
